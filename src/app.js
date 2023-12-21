@@ -1,8 +1,9 @@
 const app = require('express')();
+const consign = require('consign');
 
-const bodyParser = require('body-parser');
-
-app.use(bodyParser.json());
+consign({ cwd: 'src', verbose: false}) // cwd indica diretório padrão - verbose não mostra msg
+  .include('./config/middlewares.js')
+  .into(app);
 
 app.get('/',(req,res) => {
     res.status(200).send();
