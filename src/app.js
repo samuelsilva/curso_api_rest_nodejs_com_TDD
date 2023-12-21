@@ -1,4 +1,8 @@
- const app = require('express')();
+const app = require('express')();
+
+const bodyParser = require('body-parser');
+
+app.use(bodyParser.json());
 
 app.get('/',(req,res) => {
     res.status(200).send();
@@ -10,5 +14,9 @@ app.get('/users',(req,res) => {
     ];
     res.status(200).json(users);
 });
+
+app.post('/users',(req,res) => {
+    res.status(201).json(req.body); //o que vier no send deve retornar como resposta no body
+})
 
 module.exports = app;
